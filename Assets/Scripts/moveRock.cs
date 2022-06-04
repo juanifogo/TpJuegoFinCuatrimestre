@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class moveRock : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float rotateSpeed;
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
+    }
     void Update()
     {
-        
+        gameObject.transform.Rotate(rotateSpeed, 0, 0);
     }
 }

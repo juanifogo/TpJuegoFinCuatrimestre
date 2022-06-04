@@ -22,7 +22,7 @@ public class MovePlayer : MonoBehaviour
         {
             gameObject.transform.Translate(moveSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.Space) && hasJump>0)
+        if (Input.GetKeyDown(KeyCode.Space) && hasJump>0)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             hasJump--;
