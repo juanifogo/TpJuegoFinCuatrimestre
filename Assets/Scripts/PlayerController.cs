@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class MovePlayer : MonoBehaviour
+using UnityEngine.SceneManagement;
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed, jumpForce;
     public int maxJumps;
+    public static string state;
     int hasJump;
     Rigidbody rb;
     public float Gravity;
     AudioSource audioPlayer;
-    public AudioClip Salto, Correr;   
+    public AudioClip Salto, Correr;
+    float tiempo;   
     void Start()
     {
         Physics.gravity = new Vector3(0, Gravity, 0);
@@ -22,6 +25,7 @@ public class MovePlayer : MonoBehaviour
     }
     void Update()
     {
+        tiempo = Time.timeSinceLevelLoad;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             gameObject.transform.Translate(-moveSpeed, 0, 0);
@@ -38,7 +42,11 @@ public class MovePlayer : MonoBehaviour
             audioPlayer.clip = Salto;
             audioPlayer.Play();
         }
-
+        if(Mathf.FloorToInt(tiempo) >= 10)
+        {
+            state = "won";
+            SceneManager.LoadScene("Menu");
+        }
     }
     void OnCollisionEnter(Collision col)
     {
@@ -49,6 +57,11 @@ public class MovePlayer : MonoBehaviour
             audioPlayer.clip = Correr;
             audioPlayer.Play();
         }
-
+        
+        if(col.gameObject.tag == "obstacle")
+        {
+            state = "lost";
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

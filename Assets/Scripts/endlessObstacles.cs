@@ -19,6 +19,7 @@ public class endlessObstacles : MonoBehaviour
     }
     void OnTriggerExit(Collider ObstacleGameArea)
     {
-        transform.position += Vector3.right * -((ObstacleGameArea.bounds.size.x) + GetComponent<BoxCollider>().size.x);
+        //transform.position += Vector3.right * -((ObstacleGameArea.bounds.size.x) + GetComponent<BoxCollider>().size.x);
+        Destroy(gameObject, 1f);
     }
 }
