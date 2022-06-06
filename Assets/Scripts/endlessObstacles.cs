@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class endlessBackround : MonoBehaviour
+public class endlessObstacles : MonoBehaviour
 {
     public float moveSpeed;
     Rigidbody rb;
@@ -17,11 +17,8 @@ public class endlessBackround : MonoBehaviour
     {
         
     }
-    void OnTriggerExit(Collider gameArea)
+    void OnTriggerExit(Collider ObstacleGameArea)
     {
-        if (gameArea.gameObject.tag == "gameArea")
-        {
-            transform.position += Vector3.right * -((gameArea.bounds.size.x) + GetComponent<BoxCollider>().size.x);
-        }
+        transform.position += Vector3.right * -((ObstacleGameArea.bounds.size.x) + GetComponent<BoxCollider>().size.x);
     }
 }

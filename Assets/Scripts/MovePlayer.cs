@@ -7,10 +7,18 @@ public class MovePlayer : MonoBehaviour
     public int maxJumps;
     int hasJump;
     Rigidbody rb;
+    public float Gravity;
+    AudioSource audioPlayer;
+    public AudioClip Salto, Correr;   
     void Start()
     {
+        Physics.gravity = new Vector3(0, Gravity, 0);
         hasJump = maxJumps;
         rb = GetComponent<Rigidbody>();
+        audioPlayer = GetComponent<AudioSource>();
+        audioPlayer.loop = true;
+        audioPlayer.clip = Correr;
+        audioPlayer.Play();
     }
     void Update()
     {
@@ -24,8 +32,11 @@ public class MovePlayer : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space) && hasJump>0)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.velocity = Vector3.up * jumpForce;
             hasJump--;
+            audioPlayer.loop = false;
+            audioPlayer.clip = Salto;
+            audioPlayer.Play();
         }
 
     }
@@ -34,6 +45,9 @@ public class MovePlayer : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             hasJump = maxJumps;
+            audioPlayer.loop = true;
+            audioPlayer.clip = Correr;
+            audioPlayer.Play();
         }
 
     }
