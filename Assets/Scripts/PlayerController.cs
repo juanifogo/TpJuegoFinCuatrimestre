@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed, jumpForce;
     public int maxJumps;
-    public static string state;
+    public static string state = "playingq";
     int hasJump;
     Rigidbody rb;
     public float Gravity;
@@ -42,10 +42,18 @@ public class PlayerController : MonoBehaviour
             audioPlayer.clip = Salto;
             audioPlayer.Play();
         }
-        if(Mathf.FloorToInt(tiempo) >= 10)
+        if(Mathf.FloorToInt(tiempo) >= 15)
         {
             state = "won";
             SceneManager.LoadScene("Menu");
+        }
+        if(gameObject.transform.position.z >= 16)
+        {
+            gameObject.transform.Translate(-moveSpeed, 0, 0);
+        }
+        if(gameObject.transform.position.z <= -10)
+        {
+            gameObject.transform.Translate(moveSpeed, 0, 0);
         }
     }
     void OnCollisionEnter(Collision col)
