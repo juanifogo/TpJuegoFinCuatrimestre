@@ -11,12 +11,10 @@ public class MenuInicial : MonoBehaviour
         if(PlayerController.state == "lost")
         {
             titulo.text = "Has Perdido";
-            PlayerController.state = ""; 
         }
         else if (PlayerController.state == "won")
         {
-            titulo.text = "Has Ganado!";
-            PlayerController.state = ""; 
+            titulo.text = "Has Ganado!"; 
         }
     }
 

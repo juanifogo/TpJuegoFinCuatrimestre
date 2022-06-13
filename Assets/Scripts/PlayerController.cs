@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed, jumpForce;
     public int maxJumps;
-    public static string state = "playingq";
+    public static string state;
     int hasJump;
     Rigidbody rb;
     public float Gravity;
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         audioPlayer.loop = true;
         audioPlayer.clip = Correr;
         audioPlayer.Play();
+        state = "playing";
     }
     void Update()
     {
