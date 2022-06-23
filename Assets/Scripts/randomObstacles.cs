@@ -1,10 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class randomObstacles : MonoBehaviour
 {
     int lastTrigger = 1;
-    public GameObject obstaculo;
     GameObject clon;
     public GameObject[] obstaculos = new GameObject[4];
     public Material[] materiales = new Material[4];
@@ -23,7 +22,6 @@ public class randomObstacles : MonoBehaviour
             // Debug.Log(randMat + " " + randObs);
             clon = Instantiate(obstaculos[randObs], transform.position, transform.rotation);
             if(randObs == 3)
-
             {
                 clon.transform.Rotate(0,90,0);
             }
