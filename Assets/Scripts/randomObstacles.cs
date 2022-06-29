@@ -21,12 +21,19 @@ public class randomObstacles : MonoBehaviour
         {
             // Debug.Log(randMat + " " + randObs);
             clon = Instantiate(obstaculos[randObs], transform.position, transform.rotation);
+            if(randObs != 2 && randObs != 3)
+            {
+                clon.GetComponent<MeshRenderer>().material = materiales[randMat];
+            }
             if(randObs == 3)
             {
                 clon.transform.Rotate(0,90,0);
             }
+            if(randObs == 2)
+            {
+                clon.transform.Translate(0, 1.5f, 0);
+            }
             clon.transform.Translate(0, 0, randPos);
-            clon.GetComponent<MeshRenderer>().material = materiales[randMat];
         }
         if(tiempoRedondeado % 2 == 0)
         {
